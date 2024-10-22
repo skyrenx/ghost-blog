@@ -1,13 +1,12 @@
 import React, {useRef, useState, useEffect } from 'react';
 import './NavigationBar.css'
 import ghostImage from '../resources/cowboyGhost-really-small.png'
+import NavigationHamburgerMenu from './NavigationHamburgerMenu';
 
 
 function NavigationBar() {
     const listRef = useRef(null);
     const [currentComponent, setCurrentComponent] = useState('hiddenNavBarHorizontal');
-    // Contains the name of the component that will be rendered.
-    let currentComponentRenderedOnce = useRef(false);
 
 
     const componentsMap = new Map([
@@ -45,11 +44,8 @@ function NavigationBar() {
     
     const checkOverflow = () => {
         if(listRef.current){
-            //window.requestAnimationFrame(() => {
-                const hasOverflow = listRef.current.scrollWidth > listRef.current.clientWidth;
-                return hasOverflow;
-            //})
-            
+            const hasOverflow = listRef.current.scrollWidth > listRef.current.clientWidth;
+            return hasOverflow;            
         }
     };
 
@@ -57,15 +53,16 @@ function NavigationBar() {
     const ActiveComponent = componentsMap.get(currentComponent);
     return (
         <nav ref={listRef} className="navigationBar">
-               <ActiveComponent/>
-            </nav>
+            <ActiveComponent/>
+        </nav>
     )
 
 }
 
 function HiddenNavigationBarHorizontal(){
     return (
-        <ul className="navigationBar-list" style={{visibility: 'hidden'}}>
+        <div className='navigationBar-horizontalNavBar'>
+            <ul className="navigationBar-list" style={{visibility: 'hidden'}}>
                 <li><a href="#">
                 <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
                     </a></li>
@@ -73,12 +70,14 @@ function HiddenNavigationBarHorizontal(){
                 <li><a href="#about">About</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
+        </div>
     )
 }
 
 function NavigationBarHorizontal(){
     return (
-        <ul className="navigationBar-list">
+        <div className='navigationBar-horizontalNavBar'>
+            <ul className="navigationBar-list">
                 <li><a href="#">
                 <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
                     </a></li>
@@ -86,24 +85,10 @@ function NavigationBarHorizontal(){
                 <li><a href="#about">About</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
+        </div>
     )
 }
 
-function NavigationHamburgerMenu() {
-    let menuOpen = false;
-    return (
-        <div className="navigationHamburgerMenu">
-            {menuOpen ? 
-                <div>------------</div>
-            
-            :
-                (<div className="navigationHamburgerMenu-container"><a href="#">
-                    <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
-                        </a><div>☰</div></div>)
-            }
-        </div>
-            
-    )
-}
+
 
 export default NavigationBar
