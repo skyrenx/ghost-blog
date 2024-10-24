@@ -47,7 +47,7 @@ function NavigationBarVertical(){
     return (
         <div className='verticalNav'>
             <ul className="verticalNav-list">
-                <li><a href="#about">About</a></li>
+                <li><a href="#write">Write</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#about">About</a></li>
             </ul>

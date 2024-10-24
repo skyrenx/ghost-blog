@@ -66,7 +66,7 @@ function HiddenNavigationBarHorizontal(){
                 <li><a href="#">
                 <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
                     </a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#write">Write</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
@@ -81,7 +81,7 @@ function NavigationBarHorizontal(){
                 <li><a href="#">
                 <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
                     </a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#write">Write</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
