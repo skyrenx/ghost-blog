@@ -1,0 +1,65 @@
+.navigationHamburgerMenu-topLevel {
+    background-color: #333;
+
+    z-index: 1000;
+
+}
+
+.navigationBar-hamburgerNavBar {
+    display: flex;
+    background-color: #333;
+    justify-content: space-between;
+    align-items: center;
+    /*position: fixed;*/
+    top: 0;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    z-index: 1000;
+    height: 7rem;
+}
+
+.navigationBar-hamburgerNavBar .navigationHamburgerNav {
+    width: 100%;
+    padding-right: 2.5rem;
+    padding-left: 1rem;
+}
+
+.navigationHamburgerNav .navigationHamburgerNav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.navigationHamburgerNav-hamburgerIcon{
+    cursor: pointer;
+}
+
+.navigationHamburger-opened-container{
+    display: flex;
+    width: 100%;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.verticalNav-list {
+    list-style-type: none;
+}
+
+.verticalNav-list li {
+    padding-bottom: 2rem;
+}
+
+.verticalNav-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.5rem;
+}
+
+/* Add hover effects on links */
+.verticalNav-list a:hover {
+    text-decoration: underline;
+    color: #f0a500;
+}

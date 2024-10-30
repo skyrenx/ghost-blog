@@ -1,0 +1,41 @@
+.navigationBar-horizontalNavBar {
+    display: flex;
+    background-color: #333;
+    justify-content: space-between;
+    align-items: center;
+    /*position: fixed;*/
+    top: 0;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    z-index: 1000;
+    height: 7rem;
+}
+
+.navigationBar-list {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-inline-start: 0px;
+    margin-block-start: .5rem;
+    margin-block-end: 0rem;
+}
+
+.navigationBar-list li {
+    padding-right: 10%;
+}
+
+.navigationBar-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.5rem;
+}
+
+/* Add hover effects on links */
+.navigationBar-list a:hover {
+    text-decoration: underline;
+    color: #f0a500;
+}
+
+
