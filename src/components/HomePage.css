@@ -6,3 +6,15 @@ body {
     max-width: 100%;
     height: auto;
 }
+
+.featured-blog {
+    text-align: left;
+}
+
+.featured-blog h2 {
+    text-align: center;
+}
+
+.underlined-heading {
+    text-decoration: underline;
+}
