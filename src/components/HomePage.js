@@ -53,7 +53,7 @@ function HomePage() {
         : getNewestBlogEntry().then(featuredBlogEntry => setDisplayedBlogEntry(featuredBlogEntry))
     }, [id]);
 
-    return (<div>
+    return (<div className='homepage-content'>
         <div>
             {displayedBlogEntry ? (
                     <div key={displayedBlogEntry.id} className='featured-blog'>

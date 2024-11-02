@@ -1,5 +1,11 @@
 body {
     min-height: 200vh; /* This sets the height to 200% of the viewport height, for testing */
+
+}
+
+.homepage-content  {
+    margin-left: 10%;
+    margin-right:10%;
 }
 
 .homepage-image {

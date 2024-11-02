@@ -1,0 +1,77 @@
+
+
+.write-page-content  {
+    margin-left: 10%;
+    margin-right:10%;
+}
+
+label {
+    min-width: 6rem;
+    display: inline-block;
+    font-size: 1.5em; /* Similar to h2 size, adjust as needed */
+    font-weight: bold; /* h2 tags are typically bold */
+    line-height: 1.2; /* Optional: adjust line spacing */
+}
+
+.content-label {
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+}
+
+input {
+    background-color: black;
+    box-sizing: border-box;
+    border: 1px solid lightgrey;
+    margin-top:.5rem;
+    margin-bottom: 1rem;
+    padding-left: .2rem;
+    padding-right: .2rem;
+    width: 100%
+}
+
+.quill {
+    color: lightgray;
+}
+
+.quill .ql-stroke, 
+.quill .ql-fill {
+    stroke: currentColor;
+    color: lightgrey;
+}
+.quill .ql-picker-label {
+    color: lightgrey;
+}
+
+.quill .ql-picker-options {
+    background-color: black;
+    color: lightgrey;
+}
+
+.custom-button {
+    background-color: darkslategrey; /* Dark background color */
+    color: lightgrey;
+    border: 1px solid lightgrey;
+    padding: 10px 20px;
+    font-size: 16px; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    display: block;
+    margin: 2rem auto;
+    
+}
+
+/* Hover effect */
+.custom-button:hover {
+    background-color: #444444; /* Slightly lighter dark color on hover */
+}
+
+.submission-confirmation {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.error-messages {
+    color: lightcoral;
+}
+

@@ -1,16 +1,6 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: black;
+  color: #d1d1d1;
 }
 
 .App-header {
@@ -28,11 +18,28 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+textarea {
+  background-color: #333333; /* Dark gray background */
+  color: #d3d3d3; /* Light gray text */
+  border: 1px solid #555555; /* Optional: lighter gray border for contrast */
+  padding: 10px;
+  font-size: 16px; /* Adjust as needed */
+  resize: vertical; /* Allows vertical resizing only */
+}
+
+/* Optional: Change placeholder text color for better readability */
+textarea::placeholder {
+  color: #aaaaaa; /* Slightly lighter gray for placeholder text */
+}
+
+input {
+  background-color: #333333; /* Dark gray background */
+  color: #d3d3d3; /* Light gray text */
+  border: 1px solid #555555; /* Optional: lighter gray border for contrast */
+  padding: 1rem;
+  font-size: 16px; /* Adjust as needed */
+}
+
+input::placeholder {
+  color: #aaaaaa; /* Slightly lighter gray for placeholder text */
 }
