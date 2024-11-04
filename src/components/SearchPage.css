@@ -16,3 +16,19 @@
 .title-link h2 {
     margin-bottom: .2rem;
 }
+
+.page-count {
+    display: inline-block;
+}
+
+button {
+    background-color: darkslategrey; /* Dark background color */
+    color: lightgrey;
+    border: 1px solid lightgrey;
+    padding: 10px 20px;
+    font-size: 16px; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    margin: 1rem 1rem;
+}
