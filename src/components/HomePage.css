@@ -6,6 +6,8 @@ body {
 .homepage-content  {
     margin-left: 10%;
     margin-right:10%;
+    word-wrap: break-word;
+    box-sizing: border-box;
 }
 
 .homepage-image {
@@ -23,4 +25,14 @@ body {
 
 .underlined-heading {
     text-decoration: underline;
+}
+
+.more-blog-titles {
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.title-link {
+    display:inline-block;
+    max-width: 100%;
 }
