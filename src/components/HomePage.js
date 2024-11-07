@@ -11,7 +11,7 @@ function HomePage() {
     
     const getNewestBlogEntry = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/latest-blog-entry`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/public/latest-blog-entry`)
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
             return data;
@@ -23,7 +23,7 @@ function HomePage() {
 
     const getBlogEntryById = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blog-entries/${id}`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/public/blog-entries/${id}`)
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
             return data;

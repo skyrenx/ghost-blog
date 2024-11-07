@@ -22,10 +22,9 @@ function SearchPage() {
 
     const getBlogTitles = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/find-all-titles?page=${currentPage}&size20&sort=createdAt,asc`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/public/find-all-titles?page=${currentPage}&size20&sort=createdAt,desc`)
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-            console.log('find-all-titles: ' + data)
             return data;
         } catch (error) {
             console.error('Fetch error:', error);
@@ -55,6 +54,7 @@ function SearchPage() {
 
     const DateSection = ({createDate, updateDate}) => {
 
+        console.log('cd: ' + createDate);
         let formattedCreatedDate = formatTimestamp(createDate);
         let formattedUpdateDate = formatTimestamp(updateDate);
         if(formattedCreatedDate == formattedUpdateDate){
