@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {useParams, Link} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import './HomePage.css'
 
 
 
 function HomePage() {
     const [displayedBlogEntry, setDisplayedBlogEntry] = useState(null);
-    const {id} = useParams();
-    console.log('id: '+ id);
+    const {id} = useParams(); // url param "id" is stored into this variable.
     
     const getNewestBlogEntry = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/public/latest-blog-entry`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/public/latest-blog-entry`);
+            
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
             return data;

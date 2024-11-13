@@ -42,8 +42,6 @@ function WritePage() {
     }
 
     function displayValidationErrors( errorResponseJson){
-        
-        console.log('ve: ' + JSON.stringify(errorResponseJson) );
         errorResponseJson.validationError ?
         setErrorMessage(errorResponseJson.validationError) : 
         setErrorMessage("An unexpected error occurred")
@@ -72,16 +70,18 @@ function WritePage() {
                 (<form onSubmit={handleClickSubmitButton} >
                     <div className='author-and-title-input'>
                         <div>
-                            <label>Author</label>
+                            <label htmlFor='author'>Author</label>
                             <input
+                                id='author'
                                 type='text'
                                 value={author}
                                 onChange={(e) => setAuthor(e.target.value)}
                             />
                         </div>
                         <div>
-                            <label>Title</label>
+                            <label htmlFor='title'>Title</label>
                             <input
+                                id='title'
                                 type='text'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}

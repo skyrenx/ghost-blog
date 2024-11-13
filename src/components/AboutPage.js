@@ -3,6 +3,9 @@
 function AboutPage() {
     return (
         <div>
+         <p>
+            Idea: summarize the totality of posts from individual X accounts, so you can catch up or learn about someone's posts quickly.
+         </p>
             <p>This site was created with React, React-Quill, Spring Boot, and MySQL. 
             The Spring Boot REST service and MySQL database are hosted on Amazon Lightsail containers. 
             The React front end is hosted using Amazon S3 and CloudFront to ensure scalability and fast content delivery.</p>
