@@ -7,6 +7,7 @@ function AccountSection() {
     const [error, setError] = useState(null); //login form error
     const [jWTToken, setJWTToken] = useState(null);
     const [user, setUser] = useState(null); //username of currently logged in user
+    const [roles, setRoles] = useState(null);
     const navigate = useNavigate(); // Make sure this line is present
 
     // Read JWT and username from local storage on first render.
@@ -32,6 +33,7 @@ function AccountSection() {
     const handleLogout = () => {
         setJWTToken(null);
         setUser(null);
+        setRoles(null);
         navigate('/'); //redirect to home page
     }
 
@@ -47,7 +49,7 @@ function AccountSection() {
 
     }
 
-    // // Utility function to get CSRF token from cookie
+    // Utility function to get CSRF token from cookie
     // const getCsrfToken = () => {
     //     const match = document.cookie.match(new RegExp('(^| )XSRF-TOKEN=([^;]+)'));
     //     return match ? decodeURIComponent(match[2]) : null;
@@ -75,7 +77,8 @@ function AccountSection() {
             if (response.ok && authHeader && authHeader.startsWith('Bearer ')) {
                 const token = authHeader.split(' ')[1]; // Get the token part after 'Bearer '
                 setJWTToken(token);
-                setUser(json);
+                setUser(json.user);
+                setRoles(json.roles);
                 // Clear the input fields after login
                 setUsername('');
                 setPassword('');
@@ -87,12 +90,13 @@ function AccountSection() {
             setError(errorResponse);
             setJWTToken(null);
             setUser(null);
+            setRoles(null);
         };
     }
 
 
     return <div>
-        {jWTToken ? <div>Logged in as {user}<button onClick={handleLogout}>Log Out</button></div>
+        {jWTToken ? <div>Logged in as {user} with roles: {roles}<button onClick={handleLogout}>Log Out</button></div>
             :
             <form onSubmit={onLoginSubmit}>
                 <div>

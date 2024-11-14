@@ -17,11 +17,13 @@ function WritePage() {
         const sanitizeAuthor = DOMPurify.sanitize(author);
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blog-entries`,
+            const token = localStorage.getItem('token');
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/admin/blog-entries`,
                 {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
                     },
                     body: JSON.stringify({ title: sanitizeTitle, content: sanitizedContent, author: sanitizeAuthor })
                 });
@@ -44,7 +46,7 @@ function WritePage() {
     function displayValidationErrors( errorResponseJson){
         errorResponseJson.validationError ?
         setErrorMessage(errorResponseJson.validationError) : 
-        setErrorMessage("An unexpected error occurred")
+        setErrorMessage(["An unexpected error occurred"])
     }
 
     const handleClickSubmitButton = async (e) => {
