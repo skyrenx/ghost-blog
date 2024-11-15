@@ -1,7 +1,7 @@
 {
   "name": "michael-js",
   "version": "0.1.0",
-  "homepage": "https://skyrenx.github.io/ghost-blog",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
