@@ -15,6 +15,7 @@ function App() {
       
       <Router>
       <NavigationBar />
+      <div className='app-content'>
       <AccountSection />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -23,6 +24,7 @@ function App() {
           <Route path="/write" element={<WritePage />} />
           <Route path="/search" element={<SearchPage />} />
         </Routes>
+        </div>
       </Router>
     </div>
   );

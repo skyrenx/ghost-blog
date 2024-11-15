@@ -4,8 +4,6 @@ body {
 }
 
 .homepage-content  {
-    margin-left: 10%;
-    margin-right:10%;
     word-wrap: break-word;
     box-sizing: border-box;
 }
