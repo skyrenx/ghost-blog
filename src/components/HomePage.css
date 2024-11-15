@@ -1,8 +1,36 @@
 body {
     min-height: 200vh; /* This sets the height to 200% of the viewport height, for testing */
+
+}
+
+.homepage-content  {
+    word-wrap: break-word;
+    box-sizing: border-box;
 }
 
 .homepage-image {
     max-width: 100%;
     height: auto;
+}
+
+.featured-blog {
+    text-align: left;
+}
+
+.featured-blog h2 {
+    text-align: center;
+}
+
+.underlined-heading {
+    text-decoration: underline;
+}
+
+.more-blog-titles {
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.title-link {
+    display:inline-block;
+    max-width: 100%;
 }
