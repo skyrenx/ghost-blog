@@ -1,39 +1,83 @@
-
-
 function AboutPage() {
-    return (
-        <div>
-         <p>
-            Idea: summarize the totality of posts from individual X accounts, so you can catch up or learn about someone's posts quickly.
-         </p>
-            <p>This site was created with React, React-Quill, Spring Boot, and MySQL. 
-            The Spring Boot REST service and MySQL database are hosted on Amazon Lightsail containers. 
-            The React front end is hosted using Amazon S3 and CloudFront to ensure scalability and fast content delivery.</p>
-            <p>
-            Here’s a concise to-do list for setting up automated updates of the latest blog entry to S3 for faster loading:
+   return (
+       <div>
+           <p>
+               Hello, my name is Michael Gregory, and I'm a software engineer based in San Antonio, Texas.
+               I created this website to showcase my skills and to eventually serve as a practical personal blog 
+               platform for myself, friends, and family members. Below, I’ve included project details and GitHub 
+               links so you can explore the code. I've enjoyed working on this project so far and plan to add blog 
+               entries soon to share my software engineering journey.
+           </p>
 
-1. **Set Up Backend Script**:
-   - Write a backend script (e.g., in Node.js, Python, or as a Spring Boot job) that queries the MySQL database for the latest blog entry.
-   - Format this entry as a JSON or HTML file.
+           <p>
+               <strong>Code repositories:</strong><br />
+               Front end: <a href="https://github.com/skyrenx/ghost-blog" target="_blank" rel="noopener noreferrer">
+                   https://github.com/skyrenx/ghost-blog
+               </a><br />
+               API: <a href="https://github.com/skyrenx/blog-api" target="_blank" rel="noopener noreferrer">
+                   https://github.com/skyrenx/blog-api
+               </a>
+           </p>
 
-2. **Automate with Serverless or Cron Job**:
-   - Use AWS Lambda with a scheduled trigger or set up a cron job to run the script periodically (e.g., every hour or daily).
+           <p>
+               <strong>Connect with me:</strong><br />
+               LinkedIn: <a href="https://www.linkedin.com/in/michael-gregory-38b839b1" target="_blank" rel="noopener noreferrer">
+                   Michael Gregory
+               </a>
+           </p>
 
-3. **Upload to S3**:
-   - Configure the script to upload the JSON/HTML file to a specified S3 bucket, overwriting the previous file with the latest content.
+           <h1>Features</h1>
+           <ul>
+               <li>Home page displaying the newest blog entry.</li>
+               <li>Search page providing links to all blog entries.</li>
+               <li>User login with role-based privileges for creating blog entries.</li>
+               <li>Responsive navigation bar for both small and large screen widths.</li>
+               <li>Input validation, HTTPS, and JWT authorization.</li>
+               <li>Custom domain support.</li>
+           </ul>
 
-4. **Integrate with CloudFront**:
-   - Configure CloudFront to cache and serve the latest file from S3.
-   - Optionally, set up cache invalidation to refresh the CloudFront cache immediately after each upload, ensuring fresh content on the homepage.
+           <h2>Planned Features</h2>
+           <p>These are listed roughly in order of priority:</p>
+           <ul>
+               <li>User registration.</li>
+               <li>Search filters for the search page.</li>
+               <li>General UI improvements to enhance aesthetics.</li>
+               <li>Ability to delete and edit blog entries.</li>
+               <li>Commenting functionality for blog posts.</li>
+           </ul>
 
-5. **Update React Front End**:
-   - Modify the homepage to pull the latest blog entry directly from S3 (using CloudFront’s URL) instead of waiting for a database call.
+           <h1>Technologies Used</h1>
 
-Following these steps will enable you to serve the latest blog entry from S3, ensuring faster load times for visitors.        
-            </p>
+           <h2>API</h2>
+           <ul>
+               <li>Java Spring Boot 3.</li>
+               <li>Maven for dependency management.</li>
+               <li>HTTPS and JWT for secure communication and authorization.</li>
+               <li>JPA/Hibernate for database interactions.</li>
+               <li>Spring Boot Data REST for paginated and sortable database access.</li>
+               <li>Deployed in an AWS Lightsail container.</li>
+               <li>AWS Lightsail managed SSL certificate.</li>
+           </ul>
 
-        </div>
-    )
+           <h2>Database</h2>
+           <ul>
+               <li>MySQL database hosted on AWS Lightsail.</li>
+           </ul>
+
+           <h2>Front End</h2>
+           <ul>
+               <li>React with NPM for dependency management.</li>
+               <li>Deployed using AWS Amplify.</li>
+               <li>AWS Amplify managed SSL certificate.</li>
+           </ul>
+
+           <h2>Development and Deployment Tools</h2>
+           <ul>
+               <li>AWS Route 53 for DNS configuration and routing to custom domains.</li>
+               <li>VS Code, Docker, Postman, Git, and Github.</li>
+           </ul>
+       </div>
+   );
 }
 
-export default AboutPage
+export default AboutPage;
