@@ -39,6 +39,7 @@ function AboutPage() {
            <h2>Planned Features</h2>
            <p>These are listed roughly in order of priority:</p>
            <ul>
+               <li>Use AWS api gateway for rate limiting, DDOS protection, monitoring, and other benefits</li>
                <li>User registration.</li>
                <li>Search filters for the search page.</li>
                <li>General UI improvements to enhance aesthetics.</li>
