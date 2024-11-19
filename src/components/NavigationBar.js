@@ -4,17 +4,15 @@ import ghostImage from '../resources/cowboyGhost-really-small.png'
 import NavigationHamburgerMenu from './NavigationHamburgerMenu';
 
 
-function NavigationBar() {
+function NavigationBar({navLinks}) {
     const listRef = useRef(null);
     const [currentComponent, setCurrentComponent] = useState('hiddenNavBarHorizontal');
-
 
     const componentsMap = new Map([
         ['hiddenNavBarHorizontal', HiddenNavigationBarHorizontal],
         ['navBarHorizontal', NavigationBarHorizontal],
         ['navBarHamburgerMenu', NavigationHamburgerMenu],
     ]);
-
 
     useEffect(() => {
         setCurrentComponent(getNavComponent());
@@ -49,41 +47,46 @@ function NavigationBar() {
         }
     };
 
-    
+    const getLinks = () => {
+        return Array.from(navLinks.entries()).map(([path, navLink]) => {
+            if(navLink.enabled){
+              return <li key={path}><a href={path}>{navLink.linkText}</a></li>
+            }
+          })
+          
+    }
+
     const ActiveComponent = componentsMap.get(currentComponent);
     return (
         <nav ref={listRef} className="navigationBar">
-            <ActiveComponent/>
+            <ActiveComponent getLinks={getLinks}/>
         </nav>
     )
 
+
 }
 
-function HiddenNavigationBarHorizontal(){
+function HiddenNavigationBarHorizontal({getLinks}){
     return (
         <div className='navigationBar-horizontalNavBar'>
             <ul className="navigationBar-list" style={{visibility: 'hidden'}}>
                 <li><a href="#">
                 <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
-                    </a></li>
-                <li><a href="#write">Write</a></li>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#about">About</a></li>
+                    </a></li>{<div></div>}
+                    {getLinks()}
             </ul>
         </div>
     )
 }
 
-function NavigationBarHorizontal(){
+function NavigationBarHorizontal({getLinks}){
     return (
         <div className='navigationBar-horizontalNavBar'>
             <ul className="navigationBar-list">
                 <li><a href="#">
                 <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
                     </a></li>
-                <li><a href="#write">Write</a></li>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#about">About</a></li>
+                {getLinks()}
             </ul>
         </div>
     )
