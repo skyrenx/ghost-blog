@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import ghostImage from '../resources/cowboyGhost-really-small.png'
 import './NavigationHamburgerMenu.css'
 
-function NavigationHamburgerMenu() {
+function NavigationHamburgerMenu({getLinks}) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleClickHamburgerIcon = () => {
@@ -37,19 +37,17 @@ function NavigationHamburgerMenu() {
                 </div>
             </div>
             {menuOpen &&
-                <div className="navigationHamburger-opened-container"><NavigationBarVertical/></div>
+                <div className="navigationHamburger-opened-container"><NavigationBarVertical getLinks={getLinks}/></div>
             }
         </div>
     )
 }
 
-function NavigationBarVertical(){
+function NavigationBarVertical({getLinks}){
     return (
         <div className='verticalNav'>
             <ul className="verticalNav-list">
-                <li><a href="#write">Write</a></li>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#about">About</a></li>
+                {getLinks()}
             </ul>
         </div>
     )

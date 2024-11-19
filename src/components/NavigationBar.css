@@ -23,13 +23,13 @@
 }
 
 .navigationBar-list li {
-    padding-right: 10%;
+    padding-right: 3%;
 }
 
 .navigationBar-list a {
     color: lightgray;
     text-decoration: none;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 /* Add hover effects on links */

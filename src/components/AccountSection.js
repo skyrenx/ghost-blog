@@ -1,39 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-function AccountSection() {
+function AccountSection({logInCallback, logOffCallback}) {
     const [username, setUsername] = useState(''); //login form username
     const [password, setPassword] = useState(''); //login form password
     const [error, setError] = useState(null); //login form error
     const [jWTToken, setJWTToken] = useState(null);
     const [user, setUser] = useState(null); //username of currently logged in user
-    const [roles, setRoles] = useState(null);
-    const navigate = useNavigate(); // Make sure this line is present
+    const [roles, setRoles] = useState(null); // array of strings representing user roles
+    const navigate = useNavigate(); 
 
     // Read JWT and username from local storage on first render.
     // Define this useEffect before the useEffect that performs read for correct run order on first render. 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        ("null" !== token && token && setJWTToken(token));
+        if (token && token !== "null") {
+            setJWTToken(token);
+        }
+    
         const user = localStorage.getItem('user');
-        ("null" !== user && user && setUser(user));
+        if (user && user !== "null") {
+            setUser(user);
+        }
+    
+        const roles = localStorage.getItem('roles');
+        if (roles && roles !== "null") {
+            setRoles(roles);
+            logInCallback(roles);
+        }
     }, [])
 
     //Write JWT and user to local storage
     useEffect(() => {
-        if (jWTToken && user) {
-            localStorage.setItem('token', jWTToken); // Store the token in local storage
-            localStorage.setItem('user', user); // Store the username in local storage  
+        if (jWTToken && user && roles) {
+            localStorage.setItem('token', jWTToken);
+            localStorage.setItem('user', user); 
+            localStorage.setItem('roles', roles);
+            logInCallback(roles);
         } else {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
         }
-    }, [jWTToken, user])
+    }, [jWTToken, user, roles])
 
     const handleLogout = () => {
         setJWTToken(null);
         setUser(null);
         setRoles(null);
+        logOffCallback();
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('roles');
         navigate('/'); //redirect to home page
     }
 
@@ -64,7 +79,6 @@ function AccountSection() {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        // 'X-XSRF-TOKEN': getCsrfToken() // Include the CSRF token in the header
                     },
                     credentials: 'include',
                     body: JSON.stringify({ username, password })
@@ -73,7 +87,6 @@ function AccountSection() {
             let json = await response.json();
             // Extract the JWT token from the Authorization header
             const authHeader = response.headers.get('Authorization');
-            //console.log('authHeader: ' + response.headers.json);
             if (response.ok && authHeader && authHeader.startsWith('Bearer ')) {
                 const token = authHeader.split(' ')[1]; // Get the token part after 'Bearer '
                 setJWTToken(token);
