@@ -6,7 +6,7 @@ import AboutPage from './components/AboutPage';
 import WritePage from './components/WritePage';
 import SearchPage from './components/SearchPage';
 import NavigationBar from './components/NavigationBar';
-import AccountSection from './components/AccountSection';
+import AccountSection from './components/AccountPage';
 
 
 function App() {

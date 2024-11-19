@@ -48,3 +48,11 @@ input {
 input::placeholder {
   color: #aaaaaa; /* Slightly lighter gray for placeholder text */
 }
+
+a {
+  color: #00aaff; /* Bright Blue */
+  text-decoration: none;
+}
+a:hover {
+  color: #00ffff; /* Cyan on hover */
+}

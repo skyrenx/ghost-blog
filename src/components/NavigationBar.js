@@ -66,13 +66,14 @@ function NavigationBar({navLinks}) {
 
 }
 
+// Hidden nav bar used to check if the nav bar has enough space to be displayed.
 function HiddenNavigationBarHorizontal({getLinks}){
     return (
         <div className='navigationBar-horizontalNavBar'>
             <ul className="navigationBar-list" style={{visibility: 'hidden'}}>
                 <li><a href="#">
-                <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
-                    </a></li>{<div></div>}
+                <img className="ghostLogo" src={ghostImage} width={100} height={100} alt="A small cute cartoon ghost wearing a cowboy hat"/>
+                    </a></li>
                     {getLinks()}
             </ul>
         </div>
@@ -84,7 +85,7 @@ function NavigationBarHorizontal({getLinks}){
         <div className='navigationBar-horizontalNavBar'>
             <ul className="navigationBar-list">
                 <li><a href="#">
-                <img className="ghostLogo" src={ghostImage} alt="A small cute cartoon ghost wearing a cowboy hat"/>
+                <img className="ghostLogo" src={ghostImage} width={100} height={100} alt="A small cute cartoon ghost wearing a cowboy hat"/>
                     </a></li>
                 {getLinks()}
             </ul>

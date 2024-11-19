@@ -4,7 +4,7 @@ function AboutPage() {
            <p>
                Hello, my name is Michael Gregory, and I'm a software engineer based in San Antonio, Texas.
                I created this website to showcase my skills and to eventually serve as a practical personal blog 
-               platform for myself, friends, and family members. Below, I’ve included project details and GitHub 
+               platform for myself, friends, and family members. Below, I've included project details and GitHub 
                links so you can explore the code. I've enjoyed working on this project so far and plan to add blog 
                entries soon to share my software engineering journey.
            </p>
