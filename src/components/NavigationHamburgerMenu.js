@@ -9,6 +9,7 @@ function NavigationHamburgerMenu({getLinks}) {
         setMenuOpen(!menuOpen);
     }
     
+    //Close the hamburger menu if a link was clicked
     const handleClickNavAnchor = (event) => {
         // if the clicked element is an anchor tag
         if(event.target.tagName === 'A'){
@@ -16,6 +17,7 @@ function NavigationHamburgerMenu({getLinks}) {
         };
     }
 
+    //Close the hamburger menu if a link was clicked
     const handleClickAnchorImage = (event) => {
         // if the clicked element is an anchor tag or image tag
         if(event.target.tagName === 'A' ||
