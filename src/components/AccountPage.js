@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 function AccountSection({logInCallback, logOffCallback}) {
     const [username, setUsername] = useState(''); //login form username
@@ -72,7 +73,11 @@ function AccountSection({logInCallback, logOffCallback}) {
 
     const postLogin = async () => {
         setError(null);
-
+        const sanitizedUsername = DOMPurify.sanitize(username);
+        const sanitizedPassword = DOMPurify.sanitize(password);
+        if(password != sanitizedPassword){
+            setError(new Error('That password is illegal'));
+        }
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/public/user/login`,
                 {
