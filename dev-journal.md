@@ -1,7 +1,7 @@
 # Development Journal for `ghost-blog`
 
 ## Project Overview
-The `ghost-blog` project is an ongoing effort to create a dynamic, feature-rich personal blog platform for myself. Below is a timeline of commits, detailing the progress and features implemented during the development process.
+The `ghost-blog` project is an ongoing effort to create a personal blog platform for myself. Below is a timeline of commits, detailing the progress and features implemented during the development process.
 
 ---
 
