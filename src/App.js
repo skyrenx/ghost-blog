@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import WritePage from './components/WritePage';
@@ -20,18 +20,20 @@ function App() {
     ])
   );
   const [roles, setRoles] = useState([]);
-
-useEffect(() => {
-  const storedRoles = localStorage.getItem('roles');
-  if (storedRoles && storedRoles !== "null") {
-      setRoles(roles);
-  }
-}, [])
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
+    checkAuth();
 
+    /*const storedRoles = localStorage.getItem('roles');
+    if (storedRoles && storedRoles !== "null") {
+      setRoles(roles);
+    }*/
+  }, [])
+
+  useEffect(() => {
     let isEnabled;
-    if(roles && roles.includes('ROLE_ADMIN')){
+    if (roles && roles.includes('ROLE_ADMIN')) {
       isEnabled = true;
     } else {
       isEnabled = false;
@@ -43,27 +45,53 @@ useEffect(() => {
     setNavLinks(newNavLinks);
   }, [roles])
 
-  const logInCallback = (roles) => {
+  const checkAuth = async () => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/me`, {
+            method: 'GET',
+            credentials: 'include', // important to send cookies
+        });
+
+        if (!response.ok) {
+            // Cookie invalid or expired
+            setUser(null);
+            setRoles(null);
+            return;
+        }
+
+        const json = await response.json();
+        setUser(json.username);
+        setRoles(json.roles);
+    } catch (error) {
+        console.error("Error checking auth:", error);
+        setUser(null);
+        setRoles(null);
+    }
+};
+
+  const logInCallback = (roles, user) => {
     setRoles(roles);
+    setUser(user);
   }
   const logOffCallback = () => {
     setRoles([]);
+    setUser(null);
   }
   return (
     <div className="App">
-      
+
       <Router>
-      <NavigationBar navLinks={navLinks}/>
-      <div className='app-content'>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/blog/:id" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/write" element={<WritePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/account" element={<AccountSection logInCallback={logInCallback} logOffCallback={logOffCallback}/> } />
-          <Route path="*" element={<div>404 Not Found</div>} />
-        </Routes>
+        <NavigationBar navLinks={navLinks} />
+        <div className='app-content'>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/blog/:id" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/write" element={<WritePage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/account" element={<AccountSection logInCallback={logInCallback} logOffCallback={logOffCallback} userProp={user} rolesProp={roles} />} />
+            <Route path="*" element={<div>404 Not Found</div>} />
+          </Routes>
         </div>
       </Router>
     </div>
@@ -72,7 +100,7 @@ useEffect(() => {
 
 
 class NavLink {
-  constructor(linkText, enabled ){
+  constructor(linkText, enabled) {
     this.linkText = linkText;
     this.enabled = enabled;
   }

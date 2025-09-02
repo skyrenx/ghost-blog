@@ -2,54 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 
-function AccountSection({logInCallback, logOffCallback}) {
+function AccountSection({logInCallback, logOffCallback, userProp, rolesProp}) {
     const [username, setUsername] = useState(''); //login form username
     const [password, setPassword] = useState(''); //login form password
     const [error, setError] = useState(null); //login form error
-    const [jWTToken, setJWTToken] = useState(null);
-    const [user, setUser] = useState(null); //username of currently logged in user
-    const [roles, setRoles] = useState(null); // array of strings representing user roles
+    const [user, setUser] = useState(userProp); //username of currently logged in user
+    const [roles, setRoles] = useState(rolesProp); // array of strings representing user roles
     const navigate = useNavigate(); 
-
-    // Read JWT and username from local storage on first render.
-    // Define this useEffect before the useEffect that performs read for correct run order on first render. 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token && token !== "null") {
-            setJWTToken(token);
-        }
-    
-        const user = localStorage.getItem('user');
-        if (user && user !== "null") {
-            setUser(user);
-        }
-    
-        const roles = localStorage.getItem('roles');
-        if (roles && roles !== "null") {
-            setRoles(roles);
-            logInCallback(roles);
-        }
-    }, [])
 
     //Write JWT and user to local storage
     useEffect(() => {
-        if (jWTToken && user && roles) {
-            localStorage.setItem('token', jWTToken);
-            localStorage.setItem('user', user); 
-            localStorage.setItem('roles', roles);
-            logInCallback(roles);
+        if (user && roles) {
+            setUser(user);
+            setRoles(roles);
         } else {
         }
-    }, [jWTToken, user, roles])
+    }, [userProp, rolesProp])
 
     const handleLogout = () => {
-        setJWTToken(null);
+        //setJWTToken(null);
         setUser(null);
         setRoles(null);
         logOffCallback();
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        localStorage.removeItem('roles');
         navigate('/'); //redirect to home page
     }
 
@@ -91,13 +65,8 @@ function AccountSection({logInCallback, logOffCallback}) {
 
             let json = await response.json();
             // Extract the JWT token from the Authorization header
-            const authHeader = response.headers.get('Authorization');
-            if (response.ok && authHeader && authHeader.startsWith('Bearer ')) {
-                const token = authHeader.split(' ')[1]; // Get the token part after 'Bearer '
-                setJWTToken(token);
-                setUser(json.user);
-                setRoles(json.roles);
-                // Clear the input fields after login
+            if (response.ok) {
+                logInCallback(json.roles, json.username);
                 setUsername('');
                 setPassword('');
             }
@@ -106,7 +75,6 @@ function AccountSection({logInCallback, logOffCallback}) {
             }
         } catch (errorResponse) {
             setError(errorResponse);
-            setJWTToken(null);
             setUser(null);
             setRoles(null);
         };
@@ -114,7 +82,7 @@ function AccountSection({logInCallback, logOffCallback}) {
 
 
     return <div>
-        {jWTToken ? <div>Logged in as {user} with roles: {roles}<button onClick={handleLogout}>Log Out</button></div>
+        {user ? <div>Logged in as {user} with roles: {roles}<button onClick={handleLogout}>Log Out</button></div>
             :
             <form onSubmit={onLoginSubmit}>
                 <div>
