@@ -17,14 +17,13 @@ function WritePage() {
         const sanitizeAuthor = DOMPurify.sanitize(author);
 
         try {
-            const token = localStorage.getItem('token');
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/admin/blog-entries`,
                 {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
                     },
+                    credentials: 'include',
                     body: JSON.stringify({ title: sanitizeTitle, content: sanitizedContent, author: sanitizeAuthor })
                 });
             let json = await response.json();
